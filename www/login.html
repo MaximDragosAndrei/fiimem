@@ -23,7 +23,7 @@
             $msg = '';
             if (isset($_POST['email']) && !empty($_POST['password'])) {
 	            $pass = hash("sha256",$_POST['password']);	
-               if ( mysql_query("SELECT COUNT(*) FROM Members where email = lower('" . $_POST['email'] . "') AND password = '" . $pass . "'"))
+               if ( mysql_num_rows(mysql_query("SELECT COUNT(*) FROM Members where email = lower('" . $_POST['email'] . "') AND password = '" . $pass . "'")) != 0)
                   
                   echo 'Te-ai logat cu succes ca: ';
                }else {
