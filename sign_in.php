@@ -1,3 +1,6 @@
+<!DOCTYPE HTML>
+<html>  
+<body>
 <?php
   $postSurname = $_POST['surname'];
   $postFirstname = $_POST['firstname'];
@@ -10,3 +13,6 @@
   VALUES($postSurname,$postFirstname,$postUsername, $postEmail,$postAddress,$postPhone,$postPassword,0,
   CAST('". $_POST['birth_date'] ."' AS DATE))") or die(mysql_error());
 ?>
+  
+</body>
+</html>
