@@ -37,23 +37,88 @@
           action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
             ?>" method="post">
         <h4 class="form-signin-heading"><?php echo $msg; ?></h4>
-        <input type="text" class="form-control"
-               name="email" placeholder="Email"
-               required autofocus></br>
+       <input type="text" class="form-control"
+               name="email"  placeholder = "Email" required autofocus><br>
         <input type="password" class="form-control"
-               name="password" placeholder="Password" required>
+               name="password"  placeholder = "PassWord" required><br>
         <button class="btn btn-lg btn-primary btn-block" type="submit"
                 name="login">Login
         </button>
     </form>
 </div>
-<div class="container">
-    Click here to clean <a href="logout.php" tite="Logout">Session.
+<h2 style="text-align:left">Register formular</h2>
+<div class = "container form-register">
+    <?php
+         $msg = '';
+         if(isset($_POST['form-register'])){
+         $username = 'STUDENT';
+         $password = 'STUDENT';
+         $connection_string = 'localhost/xe';
+         $conn = oci_connect($username, $password, $connection_string);
+         $sname = '';
+         $fname = '';
+         $uname = '';
+         $email = '';
+         $address = '';
+         $phone = '';
+         $pass = '';
+         $bdate = '';
+         $sname = $_POST['surname'];
+         $fname = $_POST['firstname'];
+         $uname = $_POST['username'];
+         $email = $_POST['email'];
+         $address = $_POST['address'];
+         $phone = $_POST['phone'];
+         $pass = $_POST['password'];
+         $bdate = $_POST['birthdate'];
+         // Parse the statement. Note there is no final semi-colon in the SQL statement
+         $stid = oci_parse($conn, 'INSERT INTO MEMBERS (surname,firstname,username,email,address,phone,password,fictiv,bithdate) VALUES (:sname,:fname,:uname,:Email,:Address,:Phone,:parola,0, :bdate )');
+         oci_bind_by_name($stid, ":sname", $sname);
+         oci_bind_by_name($stid, ":fname", $fname);
+         oci_bind_by_name($stid, ":uname", $uname);
+         oci_bind_by_name($stid, ":Email", $email);
+         oci_bind_by_name($stid, ":Address", $address);
+         oci_bind_by_name($stid, ":Phone", $phone);
+         oci_bind_by_name($stid, ":parola", $pass);
+         oci_bind_by_name($stid, ":bdate", $bdate);
+         $msg= "yey";
+         oci_execute($stid);
+         oci_commit($conn);
+      }
+      else
+         $msg="Neup";
+      ?>
+</div> <!-- /container -->
+<div class = "container">
 
+    <form class = "form-register" role = "form"
+          action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
+            ?>" method = "post">
+        <h4 class = "form-register-heading"><?php echo $msg; ?></h4>
+
+       <input type = "text" class = "form-control"
+               name = "firstname"  placeholder = "FirstName " required><br>
+        <input type = "text" class = "form-control"
+               name = "surname" placeholder = "LastName" required><br>
+       <input type = "text" class = "form-control"
+               name = "username"  placeholder = "UserName" required><br>
+       <input type = "text" class = "form-control"
+               name = "email" placeholder = "Email" required autofocus><br>
+        <input type = "text" class = "form-control"
+               name = "address"  placeholder = "City" required><br>
+        <input type = "text" class = "form-control"
+               name = "phone"  placeholder = "PhoneNumber" required><br>
+        <input type = "text" class = "form-control"
+               name = "birthdate"  placeholder = "BirthDate" required><br>
+        <input type = "password" class = "form-control"
+               name = "password"  placeholder = "PassWord" required>
+        <button class = "btn btn-lg btn-primary btn-block" type = "submit"
+                name = "signin">Register</button>
+
+    </form>
+
+    Click here to clean <a href = "test2.php" title= "Logout">Session.
 </a>
 </div>
-
-
 </body>
-</html>
 </html>
