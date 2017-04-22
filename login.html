@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php
+   ob_start();
+   session_start();
+?>
+
+<?
+   // error_reporting(E_ALL);
+   // ini_set("display_errors", 1);
+?>
+
+<head>
+    <title>Pagina de login</title>
+     <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body >
+<main>
+<div class="header">  
+    <div class="top">
+        <a href="index.html"><img src="logo.jpg" class="logo" ></a>
+          <!-- <div class="email_sus"></div> -->
+          <ul class="menu">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about_us.html">ABOUT US</a></li>
+            <li><a href="profile.html">PROFILE</a></li>
+            <li><a href="upload.html">UPLOAD</a></li>
+            <li><a href="family_tree.html">FAMILY TREE</a></li>
+          </ul>
+    </div>
+</div>
+<img src="line.png" class="line_image">
+  
+
+
+<div class = "container-form-signin">
+  <h1 >Enter Email and Password</h1>
+    <?php
+            $msg = '';
+            if (isset($_POST['email']) && !empty($_POST['password'])) {
+	            $pass = hash("sha256",$_POST['password']);
+			$select = mysql_query("SELECT COUNT(*) FROM Members where email = lower('" . $_POST['email'] . "') AND password = '".$pass."'");
+               if ( mysql_num_rows($select) != 0)
+                  echo 'Te-ai logat cu succes ca: ';
+               }else {
+                  $msg = 'Wrong username or password';
+               }
+            }
+         ?>
+
+         <div class="container">
+
+    <form class="form-signin" role="form"
+          action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
+            ?>" method="post">
+        <h4 class="form-signin-heading"><?php echo $msg; ?></h4>
+       <input type="text" class="form-control"
+               name="email"  placeholder = "Email" required autofocus><br>
+        <input type="password" class="form-control"
+               name="password"  placeholder = "PassWord" required><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"
+                name="login">Login
+        </button>
+    </form>
+</div>
+
+</div> <!-- /container -->
+
+
+</main>
+</body>
+</html
