@@ -98,15 +98,15 @@ div {
     border-radius: 3px;
     margin-left: 30%;
 }
-.container {
+/*.container {
     position: relative;
     margin: 0 auto;
     padding: 20px 20px 20px;
     width: 500px;
-    background: #D59C2A;
+    background: white;
     border-radius: 3px;
     margin-left: 30%;
-}
+}*/
 h2 {
     font-weight: bold;
     color: #000000;
