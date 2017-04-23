@@ -1,0 +1,115 @@
+p{ line-height: 1em; }
+h1, h2, h3, h4{
+    color: black;
+    font-weight: normal;
+    line-height: 1.1em;
+    margin: 0 0 .5em 0;
+}
+h1{ font-size: 1.7em; }
+h2{ font-size: 1.5em; }
+{
+    color: black;
+    text-decoration: none;
+}
+a:hover,
+a:active{ text-decoration: underline; }
+
+/* you can structure your code's white space so that it is as readable for when you come back in the future or for other people to read and edit quickly */
+
+body{
+    font-family: arial; font-size: 80%; line-height: 1.2em; width: 100%; margin: 0;
+}
+/* you can put your code all in one line like above */
+#page{ margin: 20px; }
+
+/* or on different lines like below */
+#splash{
+    width: 70%;
+    margin-top: 5px;
+    font-family: French Script MT, serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-align:center;
+}
+/* but try and be as concise as possible */
+#menu{
+    width: 60%;
+    display: inline-block;
+    text-align: right;
+    float: right;
+}
+#menu ul{}
+#menu ul li{
+    display: inline-block;
+    height: 62px;
+}
+#menu ul li a{
+    padding: 20px;
+    background:  #D59C2A;
+    color: black;
+}
+#menu ul li a:hover{
+    background-color: #D59C2A;
+    box-shadow: 0px 1px 1px #666;
+}
+#menu ul li a:active{ background-color:  #D59C2A; }
+
+#content{
+    margin: 30px 0;
+    background: #D59C2A;
+    padding: 20px;
+    clear: both;
+}
+
+#footer{
+    border-bottom: 1px #000000 solid;
+    margin-bottom: 10px;
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px;   /* Height of the footer */
+}
+#footer p{
+    text-align: right;
+    text-transform: uppercase;
+    font-size: 80%;
+    color: #000000;
+}
+a.button {
+    border: 0.5px solid;
+    background: white;
+    display: inline-block;
+    padding: 5px;
+}
+
+/* multiple styles seperated by a , */
+#content,
+ul li a{ box-shadow: 0px 1px 1px #000000; }
+
+div {
+    display: block;
+}
+
+.container-form-signin {
+    position: relative;
+    margin: 0 auto;
+    padding: 20px 20px 20px;
+    width: 500px;
+    border-radius: 3px;
+    margin-left: 30%;
+}
+.container {
+    position: relative;
+    margin: 0 auto;
+    padding: 20px 20px 20px;
+    width: 500px;
+    background: white;
+    border-radius: 3px;
+    margin-left: 30%;
+}
+h2 {
+    font-weight: bold;
+    color: #000000;
+    text-align: right;
+    display: block;
+}

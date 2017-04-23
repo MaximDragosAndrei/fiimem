@@ -1,0 +1,68 @@
+<?php
+   ob_start();
+   session_start();
+?>
+
+<?
+   // error_reporting(E_ALL);
+   // ini_set("display_errors", 1);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body background="fiimem3.jpg">
+<div id="header">
+    <div id="menu">
+        <ul>
+            <li class="active"><a href="welcome%20page.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="about us.html">About us</a></li>
+        </ul>
+    </div>
+</div>
+
+<div ng-app="">
+
+    <p>Enter Email and Password:</p>
+    <input type="text" ng-model="email" placeholder="email">
+    <input type="text" ng-model="password" placeholder="password">
+    <h1>Hello {{email}}</h1>
+<h2>Enter Email and Password</h2>
+<div class = "container form-signin">
+
+    <?php
+            $msg = '';
+            if (isset($_POST['email']) && !empty($_POST['password'])) {
+	            $pass = hash("sha256",$_POST['password']);
+			$select = mysql_query("SELECT COUNT(*) FROM Members where email = lower('" . $_POST['email'] . "') AND password = '".$pass."'");
+               if ( mysql_num_rows($select) != 0)
+                  echo 'Te-ai logat cu succes ca: ';
+               }else {
+                  $msg = 'Wrong username or password';
+               }
+            }
+         ?>
+</div> <!-- /container -->
+<div class = "container">
+
+    <form class = "form-signin" role = "form"
+          action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
+            ?>" method = "post">
+        <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
+        <input type = "text" class = "form-control"
+               name = "email" placeholder = "Email"
+               required autofocus><br>
+        <input type = "password" class = "form-control"
+               name = "password" placeholder = "Password" required>
+        <a class="button" href="myprofile.html" target="_blank">Login</a>
+    </form>
+
+</div>
+</div>
+</body>
+</html>
