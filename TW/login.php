@@ -44,7 +44,6 @@
 			$pass = $_POST['password'];
 			$email = $_POST['email'];
 			// print_r($_POST);
-
 			$stid = oci_parse($conn, "SELECT username FROM Members where lower(email) = lower( :email ) AND password = :parola ");
 
 			oci_bind_by_name($stid, ":email", $email);
@@ -64,7 +63,7 @@
                 echo $doc->saveHTML();
             }
             else
-               echo "Not in database. Please sign in!";
+               echo "Not in database. Please register!";
         }
     ?>
 </div> <!-- /container -->

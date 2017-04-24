@@ -1,8 +1,6 @@
-p{ line-height: 1.5em;
-    color: black;
-         }
+p{ line-height: 1em; }
 h1, h2, h3, h4{
-    color: white;
+    color: black;
     font-weight: normal;
     line-height: 1.1em;
     margin: 0 0 .5em 0;
@@ -10,36 +8,28 @@ h1, h2, h3, h4{
 h1{ font-size: 1.7em; }
 h2{ font-size: 1.5em; }
 {
-    color: white;
+    color: black;
     text-decoration: none;
 }
-a:hover{ text-decoration: none; }
-a:active{ text-decoration: none; }
+a:hover,
+a:active{ text-decoration: underline; }
 
 /* you can structure your code's white space so that it is as readable for when you come back in the future or for other people to read and edit quickly */
 
 body{
-    font-family: arial; font-size: 120%; line-height: 1.2em; width: 100%; margin: 0;
+    font-family: arial; font-size: 80%; line-height: 1.2em; width: 100%; margin: 0;
 }
 /* you can put your code all in one line like above */
 #page{ margin: 20px; }
 
 /* or on different lines like below */
 #splash{
-    
-    position: absolute;
-    left: 0;
-    top: 14%;
-    width: 100%;
-    
-    
-    text-align: center;
-    
+    width: 70%;
+    margin-top: 5px;
     font-family: French Script MT, serif;
     font-weight: bold;
-    font-size: 80px;
-    
-
+    font-size: 30px;
+    text-align:center;
 }
 /* but try and be as concise as possible */
 #menu{
@@ -47,37 +37,28 @@ body{
     display: inline-block;
     text-align: right;
     float: right;
-    font-size: 16px;
 }
 #menu ul{}
 #menu ul li{
     display: inline-block;
     height: 62px;
-    border-radius: 8px;
-    font-size: 16px;
 }
 #menu ul li a{
-    padding: 20px;
-    background:  #151B54;
-    color: white;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 10px;
+    background:  #D59C2A;
+    color: black;
 }
 #menu ul li a:hover{
-    background-color: #151B54;
+    background-color: #D59C2A;
     box-shadow: 0px 1px 1px #666;
-    border-radius: 8px;
-    font-size: 16px;
 }
-#menu ul li a:active{ background-color:  #151B54; }
+#menu ul li a:active{ background-color:  #D59C2A; }
 
 #content{
-    margin: 30px 0;
-    background: #151B54;
-    padding: 20px;
+    margin: 10px 0;
+    background: #D59C2A;
+    padding: 5px;
     clear: both;
-    border-radius: 8px;
-    font-size: 16px;
 }
 
 #footer{
@@ -90,19 +71,15 @@ body{
 }
 #footer p{
     text-align: right;
-    font-family: arial; 
-    line-height: 2.2em;
-     width: 100%; 
-     margin: 0;
+    text-transform: uppercase;
     font-size: 80%;
-    color: black;
+    color: #000000;
 }
 a.button {
     border: 0.5px solid;
     background: white;
     display: inline-block;
     padding: 5px;
-    border-radius: 8px;
 }
 
 /* multiple styles seperated by a , */
@@ -118,7 +95,7 @@ div {
     margin: 0 auto;
     padding: 20px 20px 20px;
     width: 500px;
-    border-radius: 8px;
+    border-radius: 3px;
     margin-left: 30%;
 }
 .container {
@@ -127,7 +104,7 @@ div {
     padding: 20px 20px 20px;
     width: 500px;
     background: #D59C2A;
-    border-radius: 8px;
+    border-radius: 3px;
     margin-left: 30%;
 }
 h2 {
