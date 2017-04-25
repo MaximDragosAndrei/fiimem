@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php
+   ob_start();
+   session_start();
+?>
+
+<?
+   // error_reporting(E_ALL);
+   // ini_set("display_errors", 1);
+?>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina de login</title>
+     <meta charset="utf-8" />
+    <link rel="stylesheet" href="assets/css/style1.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body background="assets/images/fiimem3.jpg">
+<main>
+<div class="header">  
+    <div class="top">
+        <a href="welcome page.html"><img src="assets/images/logo.jpg" class="logo" ></a>
+          <!-- <div class="email_sus"></div> -->
+          <ul class="menu">
+            <li><a href="welcome page.html">HOME</a></li>
+            <li><a href="about us.html">ABOUT US</a></li>
+            <li><a href="register.html">REGISTER</a></li>
+            
+          </ul>
+    </div>
+</div>
+<img src="assets/images/line.png" class="line_image">
+  
+
+
+<div class = "container-form-signin">
+ <h1 >Enter Email and Password</h1>
+    <!-- <?php
+            $msg = '';
+            if (isset($_POST['email']) && !empty($_POST['password'])) {
+              $pass = hash("sha256",$_POST['password']);
+              $select = mysql_query("SELECT COUNT(*) FROM Members where email = lower('" . $_POST['email'] . "') AND password = '".$pass."'");
+              if ( mysql_num_rows($select) != 0)
+                  echo 'Te-ai logat cu succes ca: ';
+               }
+            else 
+                  $msg = 'Wrong username or password';                 
+            
+         ?> -->
+
+  <div class="container">
+    <form class="form-signin" role="form"
+          action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
+            ?>" method="post">
+        <!-- <h4 class="form-signin-heading"><?php echo $msg; ?></h4> -->
+       <table border="0" align="center" cellpadding="0">
+        <tr>
+        <td>
+        <input type = "text" class = "form-control"
+               name = "email" placeholder = "Email" required><br>
+        
+        </td></tr><tr>
+        <td>
+        <input type = "text" class = "form-control1"
+               name = "password" placeholder = "Password" required><br>
+        </td>
+        </tr></table>
+       <a class="button" href="myprofile.html" >Login</a>
+    </form>
+</div>
+
+</div> <!-- /container -->
+
+
+</main>
+</body>
+</html
