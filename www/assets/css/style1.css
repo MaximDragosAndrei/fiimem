@@ -235,30 +235,4 @@ float: left;
     float: left;
 }
   }
-@media (min-width: 426px) {
-  main{
-    max-width: 767px;
-    background-color: #84FF00;
-    width: 44%;
-  }
 
-}
-
-@media (min-width: 768px) {
-  main{
-    
-    max-width: 919px;
-    background-color: #FFEF00;
-    width: 46%;
-  }
-
-}
-
-@media (min-width: 1024px) {
-  main{
-    background-color: black;
-    max-width: 1439px;
-    width: 48%;
-  }
-
-}
