@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link href="assets/css/style1.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body background="assets/images/fiimem3.jpg">
+
+<div class="header">  
+    <div class="top">
+        <a href="welcome page.html"><img src="assets/images/logo.jpg" class="logo" ></a>
+          <!-- <div class="email_sus"></div> -->
+          <ul class="menu">
+            <li><a href="welcome page.html">HOME</a></li>
+            <li><a href="login1.html">LOGIN</a></li>
+            <li><a href="about us.html">ABOUT US</a></li>
+            
+           
+            
+            
+
+          </ul>
+    </div>
+</div>
+<img src="assets/images/line.png" class="line_image">
+  
+<div class = "container-form-signin">
+
+    <form class = "form-signin" role = "form"
+          action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']);
+            ?>" method = "post">
+        <!-- <h4 class = "form-signin-heading"><?php echo $msg; ?></h4> -->
+        <table border="0" align="center" cellpadding="0">
+        <tr>
+        <td>
+        <input type = "text" class = "form-control"
+               name = "firstname" placeholder = "Name" required><br>
+        
+        </td>
+        <td>
+        <input type = "text" class = "form-control"
+               name = "surname" placeholder = "Lastname" required><br>
+        </td></tr>
+        <tr>
+        <td>
+        <input type = "text" class = "form-control"
+               name = "username" placeholder = "Username" required><br>
+        </td>
+        <td>
+        <input type = "text" class = "form-control"
+               name = "email" placeholder = "Email"
+               required autofocus><br>
+        </td></tr>
+        <tr>
+        <td>
+        <input type = "text" class = "form-control1"
+               name = "address" placeholder = "City" required><br>
+        </td>
+        <td>
+        <input type = "text" class = "form-control1"
+               name = "phone" placeholder = "Phone" required><br>
+        </td></tr>
+        <tr>
+        <td>
+        <input type = "timestamp" class = "form-control1"
+               name = "birthdate" placeholder = "Birthdate" required><br>
+        </td>
+        <td>
+        <input type = "password" class = "form-control1"
+               name = "password" placeholder = "Password" required>
+        </td>
+        </tr>
+        </table>
+        </t><a class="button" href="login1.html"  >Register</a>
+    </form>
+</div>
+<div id="footer">
+    <div align="center"> <p><strong>
+        Webpage made by FiiMem Team
+    </strong></p></div>
+
+</div>
+</body>
+</html>
+
+
