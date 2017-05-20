@@ -3,7 +3,7 @@ CREATE TABLE GenTree (mid number(10) NOT NULL, mid2 number(10) NOT NULL, relatio
 CREATE TABLE History (mid number(10) NOT NULL, hid number(10) NOT NULL, logindate timestamp(9) with local time zone NOT NULL , logoutdate timestamp(9) with local time zone NOT NULL , PRIMARY KEY (mid, hid));
 CREATE TABLE Members (mid number(10) NOT NULL, surname varchar2(255) NOT NULL, firstname varchar2(255) NOT NULL, username varchar2(255), email varchar2(255) UNIQUE, address varchar2(255), phone number(13, 0), password varchar2(255), fictiv number(1) DEFAULT 0 NOT NULL, bithdate timestamp(9) NOT NULL, deceaseddate timestamp(9), PRIMARY KEY (mid));
 CREATE TABLE Members_Tags (mid number(10) NOT NULL, tid number(10) NOT NULL, PRIMARY KEY (mid, tid));
-CREATE TABLE Privacy (pid number(10) NOT NULL, rights number(2) DEFAULT 1 NOT NULL, PRIMARY KEY (pid));
+CREATE TABLE Privacy (pid number(10) NOT NULL, rights varchar2(255) DEFAULT 1 NOT NULL, PRIMARY KEY (pid));
 CREATE TABLE Privacy_Files (pid number(10) NOT NULL, fid number(10) NOT NULL, FilesMembersmid number(10) NOT NULL, PRIMARY KEY (pid, fid, FilesMembersmid));
 CREATE TABLE Privacy_Members (pid number(10) NOT NULL, mid number(10) NOT NULL, PRIMARY KEY (pid, mid));
 CREATE TABLE Tags (tid number(10) NOT NULL, name varchar2(16) NOT NULL, PRIMARY KEY (tid));
