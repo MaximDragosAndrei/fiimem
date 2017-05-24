@@ -1,4 +1,4 @@
-CREATE TABLE Files (fid number(10) NOT NULL, Membersmid number(10) NOT NULL, address varchar2(255) NOT NULL UNIQUE, name varchar2(255) NOT NULL, format varchar2(16) NOT NULL, PRIMARY KEY (fid, Membersmid));
+CREATE TABLE Files (fid number(10) NOT NULL, Membersmid number(10) NOT NULL, address varchar2(255) NOT NULL UNIQUE, name varchar2(255) NOT NULL, format varchar2(16) NOT NULL,files blob NOT NULL, PRIMARY KEY (fid, Membersmid));
 CREATE TABLE GenTree (mid number(10) NOT NULL, mid2 number(10) NOT NULL, relationship number(1) NOT NULL, PRIMARY KEY (mid, mid2));
 CREATE TABLE History (mid number(10) NOT NULL, hid number(10) NOT NULL, logindate timestamp(9) with local time zone NOT NULL , logoutdate timestamp(9) with local time zone NOT NULL , PRIMARY KEY (mid, hid));
 CREATE TABLE Members (mid number(10) NOT NULL, surname varchar2(255) NOT NULL, firstname varchar2(255) NOT NULL, username varchar2(255), email varchar2(255) UNIQUE, address varchar2(255), phone number(13, 0), password varchar2(255), fictiv number(1) DEFAULT 0 NOT NULL, bithdate timestamp(9) NOT NULL, deceaseddate timestamp(9), PRIMARY KEY (mid));
