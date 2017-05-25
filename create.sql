@@ -152,14 +152,20 @@ BEGIN
 END;
 /
 --view
-create materialized view Poze as
-select * from Files where format in('.jpg','.gif','.tiff','.tga','.psd','.png','.bmp','.wmf');
+create materialized view poze build immediate 
+refresh complete on commit 
+as
+select * from files where format in('.jpg','.gif','.tiff','.tga','.psd','.png','.bmp','.wmf');
 /
-create materialized view Filme as
-select * from Files where format in('.mp3','.mp4','.mpg','.mpeg','.3gp','.mov','.asf','.wmv');
+create materialized view filme build immediate 
+refresh complete on commit 
+as
+select * from files where format in('.mp3','.mp4','.mpg','.mpeg','.3gp','.mov','.asf','.wmv');
 /
-create materialized view Documente as 
-select * from Files where format in('.doc','.txt','.rtf','.xls','.xlm','.DBF','.MSG','.PPT','.PPS');
+create materialized view documente build immediate 
+refresh complete on commit 
+as
+select * from files where format in('.doc','.txt','.rtf','.xls','.xlm','.DBF','.MSG','.PPT','.PPS');
 /
 --triggere view
 create or replace trigger PozeDelete
