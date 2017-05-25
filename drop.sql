@@ -12,13 +12,6 @@ DROP TRIGGER Members_Delete;
 DROP TRIGGER Privacy_Delete;
 DROP TRIGGER Files_Delete;
 DROP TRIGGER Tags_Delete;
---triggere view
-DROP TRIGGER PozeDelete;
-DROP TRIGGER FilmeDelete;
-DROP TRIGGER DocumenteDelete;
-DROP TRIGGER PozeUpdate;
-DROP TRIGGER FilmeUpdate;
-DROP TRIGGER DocumenteUpdate;
 --view
 DROP MATERIALIZED VIEW Poze;
 DROP MATERIALIZED VIEW Filme;
