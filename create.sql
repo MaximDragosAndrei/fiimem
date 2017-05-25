@@ -167,59 +167,6 @@ refresh complete on commit
 as
 select * from files where format in('.doc','.txt','.rtf','.xls','.xlm','.DBF','.MSG','.PPT','.PPS');
 /
---triggere view
-create or replace trigger PozeDelete
-after delete on Poze
-for each row
-begin
-  delete from Files
-  where format= :Old.format;
-end;
-/
-create or replace trigger FilmeDelete
-after delete on Filme
-for each row
-begin
-  delete from Files
-  where format= :Old.format;
-end;
-/
-
-create or replace trigger DocumenteDelete
-after delete on Documente
-for each row
-begin
-  delete from Files
-  where format= :Old.format;
-end;
-/
-create or replace trigger PozeUpdate
-after update on Poze
-for each row
-begin
-  update Files
-  set format = :New.format
-  where address = :New.address and format = :Old.format;
-end;
-/
-create or replace trigger FilmeUpdate
-after update on Filme
-for each row
-begin
-  update Files
-  set format = :New.format
-  where address = :New.address and format = :Old.format;
-end;
-/
-create or replace trigger DocumenteUpdate
-after update on Documente
-for each row
-begin
-  update Files
-  set format = :New.format
-  where address = :New.address and format = :Old.format;
-end;
-/
 --indecsi
 create index indexmulti on Members(surname, address);
 /
