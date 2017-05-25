@@ -1,3 +1,8 @@
+--indecsi
+drop index indexmulti;
+drop index indexname;
+drop index indexoras;
+--triggere tabele
 DROP TRIGGER Tpassword;
 DROP TRIGGER Temail;
 DROP TRIGGER Tusername;
@@ -7,6 +12,18 @@ DROP TRIGGER Members_Delete;
 DROP TRIGGER Privacy_Delete;
 DROP TRIGGER Files_Delete;
 DROP TRIGGER Tags_Delete;
+--triggere view
+DROP TRIGGER PozeDelete;
+DROP TRIGGER FilmeDelete;
+DROP TRIGGER DocumenteDelete;
+DROP TRIGGER PozeUpdate;
+DROP TRIGGER FilmeUpdate;
+DROP TRIGGER DocumenteUpdate;
+--view
+DROP MATERIALIZED VIEW Poze;
+DROP MATERIALIZED VIEW Filme;
+DROP MATERIALIZED VIEW Documente;
+--tabele
 DROP TABLE Files CASCADE CONSTRAINTS;
 DROP TABLE GenTree CASCADE CONSTRAINTS;
 DROP TABLE History CASCADE CONSTRAINTS;
