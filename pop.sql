@@ -1,4 +1,4 @@
-SET SERVEROUTPUT ON;
+set serveroutput on;
 DECLARE 
    type namesarray IS VARRAY(600) OF VARCHAR2(255); 
    contor NUMBER(10);
@@ -8,6 +8,7 @@ DECLARE
    filename namesarray;
    addressname namesarray;
    rand number;
+   tip number;
 BEGIN 
    firstname := namesarray('Adelle','Adena','Adina','Adolfo','Adolph','Adria','Barry','Bart','Barton','Basil','Basilia','Cierra','Cinda','Cinderella','Cindi','Cindie','Dirk','Divina','Dixie','Dodie','Dollie','Ellena','Elli',
    'Ellie','Elliot','Elliott','Fermin','Fermina','Fern','Fernanda','Fernande','Giuseppe','Giuseppina','Gladis','Glady','Gladys','Hazel','Heath','Heather','Hector','Hedwig','Ignacio','Ike','Ila','Ilana','Ilda','Jacqui','Jacquie',
@@ -75,13 +76,22 @@ BEGIN
    end loop;
    --Privacy
    for i in 1..100 loop
-      insert into Privacy(pid,rights) values(i,trunc(dbms_random.value(1,4)));
+   tip:=trunc(dbms_random.value(1,3));
+   if(tip=1)then
+      insert into Privacy(pid,rights) values(i,'family');
+      end if;
+      if(tip=2)then
+      insert into Privacy(pid,rights) values(i,'all');
+      end if;
+      if(tip=3)then
+      insert into Privacy(pid,rights) values(i,'nobody');
+      end if;
    end loop;
    --Files
    filename:=namesarray('img.jpg','img1.jpg','img2.jpg','img3.jpg','img4.jpg');
    addressname:=namesarray('c://Desktop/img.jpg','c://Desktop/img1.jpg','c://Desktop/img2.jpg','c://Desktop/img3.jpg','c://Desktop/img4.jpg');
    for i in 1 ..5 loop
-    insert into Files(fid,membersmid,address,name,format) values (i,i,addressname(i),filename(i),'.jpg');
+    insert into Files(fid,membersmid,address,name,format,files) values (i,i,addressname(i),filename(i),'.jpg','54455354');
    end loop;
    --Privacy_Files
    for i in 1..5 loop
