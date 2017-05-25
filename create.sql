@@ -1,3 +1,4 @@
+--tabele
 CREATE TABLE Files (fid number(10) NOT NULL, Membersmid number(10) NOT NULL, address varchar2(255) NOT NULL UNIQUE, name varchar2(255) NOT NULL, format varchar2(16) NOT NULL,files blob NOT NULL, PRIMARY KEY (fid, Membersmid));
 CREATE TABLE GenTree (mid number(10) NOT NULL, mid2 number(10) NOT NULL, relationship number(1) NOT NULL, PRIMARY KEY (mid, mid2));
 CREATE TABLE History (mid number(10) NOT NULL, hid number(10) NOT NULL, logindate timestamp(9) with local time zone NOT NULL , logoutdate timestamp(9) with local time zone NOT NULL , PRIMARY KEY (mid, hid));
@@ -10,8 +11,6 @@ CREATE TABLE Tags (tid number(10) NOT NULL, name varchar2(16) NOT NULL, PRIMARY 
 CREATE TABLE Tags_Files (tid number(10) NOT NULL, fid number(10) NOT NULL, FilesMembersmid number(10) NOT NULL, PRIMARY KEY (tid, fid, FilesMembersmid));
 CREATE UNIQUE INDEX Files_fid ON Files (fid);
 CREATE UNIQUE INDEX History_hid ON History (hid);
---CREATE UNIQUE INDEX Members_mid ON Members (mid);
---CREATE UNIQUE INDEX Privacy_pid ON Privacy (pid);
 CREATE INDEX Tags_name ON Tags (name);
 ALTER TABLE Privacy_Files ADD CONSTRAINT "allows" FOREIGN KEY (fid, FilesMembersmid) REFERENCES Files (fid, Membersmid);
 ALTER TABLE GenTree ADD CONSTRAINT "belongs to" FOREIGN KEY (mid2) REFERENCES Members (mid);
@@ -25,6 +24,7 @@ ALTER TABLE Files ADD CONSTRAINT "owns" FOREIGN KEY (Membersmid) REFERENCES Memb
 ALTER TABLE Privacy_Members ADD CONSTRAINT "share" FOREIGN KEY (mid) REFERENCES Members (mid);
 ALTER TABLE Members_Tags ADD CONSTRAINT "use" FOREIGN KEY (mid) REFERENCES Members (mid);
 ALTER TABLE Members_Tags ADD CONSTRAINT "used" FOREIGN KEY (tid) REFERENCES Tags (tid);
+--triggere
 CREATE OR REPLACE TRIGGER Taddress
   BEFORE INSERT OR UPDATE ON Members
   FOR EACH ROW
@@ -95,4 +95,128 @@ BEGIN
     RAISE_APPLICATION_ERROR( -20002,'Eu te credeam inteligent(a). Ai nevoie de un username!');
   END IF;
 END;
+/
+ CREATE or replace TRIGGER Members_Delete
+         AFTER DELETE
+            ON Members
+            For each row
+BEGIN
+         DELETE FROM GenTree
+        	WHERE GenTree.mid = :old.mid;
+        DELETE FROM Privacy_Members
+        	WHERE Privacy_Members.mid = :old.mid;
+        DELETE FROM Members_Tags
+        	WHERE Members_Tags.mid = :old.mid;
+	DELETE FROM Files
+		WHERE Files.Membersmid=:old.mid;
+	DELETE FROM Privacy_Files
+		WHERE Privacy_Files.FilesMembersmid=:old.mid;
+	DELETE FROM History
+		WHERE History.mid=:old.mid;
+	DELETE FROM Tags_Files
+		WHERE Tags_Files.FilesMembersmid=:old.mid;
+END;
+/
+  CREATE OR REPLACE TRIGGER Privacy_Delete
+         AFTER DELETE
+            ON Privacy
+            FOR EACH ROW
+BEGIN
+    DELETE FROM Privacy_Members
+          WHERE Privacy_Members.pid =:old.pid;
+    DELETE FROM Privacy_Files
+          WHERE Privacy_Files.pid =:old.pid;
+END;
+/
+ 
+  CREATE OR REPLACE TRIGGER Files_Delete
+         AFTER DELETE
+            ON Files
+            FOR EACH ROW
+BEGIN
+    DELETE FROM Privacy_Files
+          WHERE Privacy_Files.fid =:old.fid;
+    DELETE FROM Tags_Files
+          WHERE Tags_Files.fid =:old.fid;
+END;
+/
+  CREATE OR REPLACE TRIGGER Tags_Delete
+         AFTER DELETE
+            ON Tags
+            FOR EACH ROW
+BEGIN
+    DELETE FROM Members_Tags
+          WHERE Members_Tags.tid =:old.tid;
+    DELETE FROM Tags_Files
+          WHERE Tags_Files.tid =:old.tid;
+END;
+/
+--view
+create materialized view Poze as
+select * from Files where format in('.jpg','.gif','.tiff','.tga','.psd','.png','.bmp','.wmf');
+/
+create materialized view Filme as
+select * from Files where format in('.mp3','.mp4','.mpg','.mpeg','.3gp','.mov','.asf','.wmv');
+/
+create materialized view Documente as 
+select * from Files where format in('.doc','.txt','.rtf','.xls','.xlm','.DBF','.MSG','.PPT','.PPS');
+/
+--triggere view
+create or replace trigger PozeDelete
+after delete on Poze
+for each row
+begin
+  delete from Files
+  where format= :Old.format;
+end;
+/
+create or replace trigger FilmeDelete
+after delete on Filme
+for each row
+begin
+  delete from Files
+  where format= :Old.format;
+end;
+/
 
+create or replace trigger DocumenteDelete
+after delete on Documente
+for each row
+begin
+  delete from Files
+  where format= :Old.format;
+end;
+/
+create or replace trigger PozeUpdate
+after update on Poze
+for each row
+begin
+  update Files
+  set format = :New.format
+  where address = :New.address and format = :Old.format;
+end;
+/
+create or replace trigger FilmeUpdate
+after update on Filme
+for each row
+begin
+  update Files
+  set format = :New.format
+  where address = :New.address and format = :Old.format;
+end;
+/
+create or replace trigger DocumenteUpdate
+after update on Documente
+for each row
+begin
+  update Files
+  set format = :New.format
+  where address = :New.address and format = :Old.format;
+end;
+/
+--indecsi
+create index indexmulti on Members(surname, address);
+/
+create index indexname on Members(upper(username));
+/
+create index indexoras on Members(INITCAP(LOWER(regexp_substr(address,'[^,]+'))));
