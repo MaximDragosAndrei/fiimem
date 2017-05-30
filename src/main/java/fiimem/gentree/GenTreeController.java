@@ -51,7 +51,7 @@ public class GenTreeController {
 	}
 
 	@RequestMapping(value = "/gentree/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Integer> deleteMembers(@PathVariable("id") int id) {
+	public ResponseEntity<Integer> deleteGenTree(@PathVariable("id") int id) {
 		int result = GenTreeService.deleteGenTree(id);
 		if(result == 0)
 			return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
@@ -60,7 +60,7 @@ public class GenTreeController {
 	}
 
 	@RequestMapping(value = "/gentree", method = RequestMethod.PUT)
-	public ResponseEntity<Integer> insertMembers(@RequestBody GenTree gentree) {
+	public ResponseEntity<Integer> insertGenTree(@RequestBody GenTree gentree) {
 		int result = GenTreeService.insertGenTree(gentree);
 		if(result == 0)
 			return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
