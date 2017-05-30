@@ -33,7 +33,7 @@ public class GenTreeController {
 
 	@RequestMapping(value = "/gentree/{id}", method = RequestMethod.GET)
 	public ResponseEntity<GenTree> getGenTree(@PathVariable int id) {
-		GenTree result = GenTreeService.getMembers(id);
+		GenTree result = GenTreeService.getGenTree(id);
 
 		if(result == null)
 			return new ResponseEntity<GenTree>(result, HttpStatus.NOT_FOUND);
