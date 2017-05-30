@@ -97,7 +97,7 @@ public class HistoryService {
 		return 0;
     }
 
-    static int deleteMembers(int id) {
+    static int deleteHistory(int id) {
         int result;
 		Connection con = MainApp.getDBConnection();
 		String query = "DELETE FROM HISTORY WHERE mid = ?";
