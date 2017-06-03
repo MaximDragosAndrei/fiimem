@@ -152,18 +152,15 @@ BEGIN
 END;
 /
 --view
-create materialized view poze build immediate 
-refresh complete on commit 
+create materialized view poze for update
 as
 select * from files where format in('.jpg','.gif','.tiff','.tga','.psd','.png','.bmp','.wmf');
 /
-create materialized view filme build immediate 
-refresh complete on commit 
+create materialized view filme for update
 as
 select * from files where format in('.mp3','.mp4','.mpg','.mpeg','.3gp','.mov','.asf','.wmv');
 /
-create materialized view documente build immediate 
-refresh complete on commit 
+create materialized view documente for update
 as
 select * from files where format in('.doc','.txt','.rtf','.xls','.xlm','.DBF','.MSG','.PPT','.PPS');
 /
