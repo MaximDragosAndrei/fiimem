@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import security.HashConvertor;
 
 /**
  *
@@ -97,10 +98,35 @@ public class MembersService {
 		}
 		return null;
     }
+//    static int updatePassword() {
+//        int result;
+//        HashConvertor hash = new HashConvertor();
+//        Connection con = MainApp.getDBConnection();
+//        String query = "UPDATE members SET password = ? where mid = ?";
+//        try {
+//            PreparedStatement pstmt = con.prepareStatement(query);
+//            String selectQuery = "SELECT * FROM Members";
+//            Statement stmt = con.createStatement();
+//            ResultSet rs = stmt.executeQuery(selectQuery);
+//            while (rs.next()) {
+//                int mid = rs.getInt("MID");
+//                String password = rs.getString("PASSWORD");
+//                pstmt.setString(1, hash.convert(password));
+//                pstmt.setInt(2, mid);
+//                result = pstmt.executeUpdate();
+//            }
+//            pstmt.close();
+//            return 1;
+//        } catch (Exception exc) {
+//            System.out.printf("[error][updatePassword] %s\n", exc.getMessage());
+//        }
+//        return 0;
+//    }
 
     static int updateMembers(int id, Member member) {
         int result;
 		Connection con = MainApp.getDBConnection();
+		HashConvertor hash = new HashConvertor();
 		String query = "UPDATE members SET mid = ?, surname = ?, firstname = ?, username = ?,"
                         + "email = ?, address = ?, phone = ?, password = ?, fictiv = ?, bithdate = ?, "
                         + "DECEASEDDATE = ? where mid = ?";
@@ -114,8 +140,7 @@ public class MembersService {
                         pstmt.setString(5, member.getEmail());
                         pstmt.setString(6, member.getAddress());
                         pstmt.setInt(7, member.getPhone());
-                        //to do: de pus salted hash la parola
-                        pstmt.setString(8, member.getPassword());
+		    	pstmt.setString(8, hash.convert(member.getPassword()));
                         pstmt.setInt(9,member.getFictiv());
                         pstmt.setString(10,member.getBithdate());
                         pstmt.setString(11,member.getDeceaseddate());
@@ -147,6 +172,7 @@ public class MembersService {
 
     static int insertMembers(Member member) {
         int result;
+		HashConvertor hash = new HashConvertor();
 		Connection con = MainApp.getDBConnection();
 		String query = "INSERT INTO MEMBERS (MID, SURNAME, FIRSTNAME, USERNAME, EMAIL, ADDRESS"
                         + ",PHONE, PASSWORD, FICTIV, BITHDATE, DECEASEDDATE)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
@@ -160,8 +186,7 @@ public class MembersService {
                         pstmt.setString(5, member.getEmail());
                         pstmt.setString(6, member.getAddress());
                         pstmt.setInt(7, member.getPhone());
-                        //to do: insert the salted hash
-                        pstmt.setString(8, member.getPassword());
+			pstmt.setString(8, hash.convert(member.getPassword()));
                         pstmt.setInt(9, member.getFictiv());
                         pstmt.setString(10, member.getBithdate());
                         pstmt.setString(11, member.getDeceaseddate());
