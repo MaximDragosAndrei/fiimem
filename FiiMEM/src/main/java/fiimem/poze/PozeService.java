@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fiimem.files;
+package fiimem.poze;
 
 import fiimem.MainApp;
 import java.sql.Connection;
@@ -17,22 +17,19 @@ import java.util.List;
  *
  * @author andy
  */
-public class FilesService {
-
-    static List<File> getAllFiles() {
-        ArrayList<File> result = new ArrayList<File>();
+public class PozeService {
+    static List<Poza> getAllPoze() {
+        ArrayList<Poza> result = new ArrayList<Poza>();
         Connection con = MainApp.getDBConnection();
         String query = "SELECT * FROM Files";
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                File file = new File();
+                Poza file = new Poza();
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
-                //file.setByteArray(rs.getBytes("FILES"));
-                //file.setIs(rs.getBinaryStream("FILES"));
                 file.setByteArray(rs.getBytes("FILES"));
                 file.setMembersmid(rs.getInt("MEMBERSMID"));
                 file.setName(rs.getString("NAME"));
@@ -46,25 +43,23 @@ public class FilesService {
                 return result;
             }
         } catch (Exception exc) {
-            System.out.printf("[error][getAllFiles] %s\n", exc.getMessage());
+            System.out.printf("[error][getAllPoze] %s\n", exc.getMessage());
         }
         return null;
     }
 
-    static File getFiles(int id) {
-        File result = null;
+    static Poza getPoze(int id) {
+        Poza result = null;
         Connection con = MainApp.getDBConnection();
         String query = "SELECT * FROM Files WHERE FID = " + id;
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                File file = new File();
+                Poza file = new Poza();
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
-                //file.setByteArray(rs.getBytes("FILES"));
-                //file.setIs(rs.getBinaryStream("FILES"));
                 file.setByteArray(rs.getBytes("FILES"));
                 file.setMembersmid(rs.getInt("MEMBERSMID"));
                 file.setName(rs.getString("NAME"));
@@ -83,7 +78,7 @@ public class FilesService {
         return null;
     }
 
-    static int updateFiles(int id, File file) {
+    /*static int updateFiles(int id, File file) {
         int result;
         Connection con = MainApp.getDBConnection();
         String query = "UPDATE FILES SET FID = ?, MEMBERSMID = ?, ADDRESS = ?, NAME = ?,"
@@ -96,9 +91,7 @@ public class FilesService {
             pstmt.setString(3, file.getAddress());
             pstmt.setString(4, file.getName());
             pstmt.setString(5, file.getFormat());
-            //pstmt.setBlob(6, file.getByteArray());
-            //pstmt.setBinaryStream(6, file.getIs());
-            pstmt.setBytes(6, file.getByteArray());
+            pstmt.setBlob(6, file.getByteArray());
             pstmt.setInt(7, id);
             result = pstmt.executeUpdate();
             pstmt.close();
@@ -107,9 +100,9 @@ public class FilesService {
             System.out.printf("[error][updateFiles] %s\n", exc.getMessage());
         }
         return 0;
-    }
+    }*/
 
-    static int deleteFiles(int id) {
+    static int deletePoze(int id) {
         int result;
         Connection con = MainApp.getDBConnection();
         String query = "DELETE FROM FILES WHERE FID = ?";
@@ -125,7 +118,7 @@ public class FilesService {
         return 0;
     }
 
-    static int insertFiles(File file) {
+    /*static int insertFiles(File file) {
         int result;
         Connection con = MainApp.getDBConnection();
         String query = "INSERT INTO FILES (FID, MEMBERSMID, ADDRESS, NAME, FORMAT, FILES)"
@@ -138,9 +131,7 @@ public class FilesService {
             pstmt.setString(3, file.getAddress());
             pstmt.setString(4, file.getName());
             pstmt.setString(5, file.getFormat());
-            //pstmt.setBlob(6, file.getIs());
-            //pstmt.setBlob(6, file.getBlob());
-            pstmt.setBytes(6, file.getByteArray());
+            pstmt.setBlob(6, file.getBlob());
             result = pstmt.executeUpdate();
             pstmt.close();
             return result;
@@ -148,5 +139,7 @@ public class FilesService {
             System.out.printf("[error][insertFiles] %s\n", exc.getMessage());
         }
         return 0;
-    }
+    }*/
+
+    
 }

@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>fiimem</groupId>
-    <artifactId>basic</artifactId>
+    <artifactId>back-end</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>basic</name>
-    <description>Basic project for Spring Boot</description>
+    <name>back-end</name>
+    <description>Back-end server for FIIMEM</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

@@ -21,50 +21,81 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/model")
 @RestController
 public class MembersController {
+
     @RequestMapping(value = "/members", method = RequestMethod.GET)
-	public ResponseEntity<List<Member>> getAllMembers() {
-		List<Member> result = MembersService.getAllMembers();
-		
-		if(result == null)
-			return new ResponseEntity<List<Member>>(result, HttpStatus.NO_CONTENT);
+    public ResponseEntity<List<Member>> getAllMembers() {
+        List<Member> result = MembersService.getAllMembers();
 
-		return new ResponseEntity<List<Member>>(result, HttpStatus.OK);
-	}
+        if (result == null) {
+            return new ResponseEntity<List<Member>>(result, HttpStatus.NO_CONTENT);
+        }
 
-	@RequestMapping(value = "/members/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Member> getMembers(@PathVariable int id) {
-		Member result = MembersService.getMembers(id);
+        return new ResponseEntity<List<Member>>(result, HttpStatus.OK);
+    }
 
-		if(result == null)
-			return new ResponseEntity<Member>(result, HttpStatus.NOT_FOUND);
+    @RequestMapping(value = "/members/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Member> getMembers(@PathVariable int id) {
+        Member result = MembersService.getMembers(id);
 
-		return new ResponseEntity<Member>(result, HttpStatus.OK);
-	}
+        if (result == null) {
+            return new ResponseEntity<Member>(result, HttpStatus.NOT_FOUND);
+        }
 
-	@RequestMapping(value = "/members/{id}", method = RequestMethod.POST)
-	public ResponseEntity<Integer> updateMembers(@PathVariable("id") int id, @RequestBody Member member) {
-		int result = MembersService.updateMembers(id, member);
-		if(result == 0)
-			return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
-		else
-			return new ResponseEntity<Integer>(result, HttpStatus.OK);
-	}
+        return new ResponseEntity<Member>(result, HttpStatus.OK);
+    }
+    
+    /*@RequestMapping(value = "/members/checkPassword", method = RequestMethod.PUT)
+    public ResponseEntity<Integer> checkPassword(@RequestBody LoginDetails login ) {
+        Integer result = MembersService.checkPassword(login);
+        if (result == 0) {
+            return new ResponseEntity<Integer>(result, HttpStatus.NOT_FOUND);
+        }
 
-	@RequestMapping(value = "/members/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Integer> deleteMembers(@PathVariable("id") int id) {
-		int result = MembersService.deleteMembers(id);
-		if(result == 0)
-			return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
-		else
-			return new ResponseEntity<Integer>(result, HttpStatus.OK);
-	}
+        return new ResponseEntity<Integer>(result, HttpStatus.OK);
+    }*/
 
-	@RequestMapping(value = "/members", method = RequestMethod.PUT)
-	public ResponseEntity<Integer> insertMembers(@RequestBody Member member) {
-		int result = MembersService.insertMembers(member);
-		if(result == 0)
-			return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
-		else
-			return new ResponseEntity<Integer>(result, HttpStatus.OK);
-	}
+    @RequestMapping(value = "/members/{id}", method = RequestMethod.POST)
+    public ResponseEntity<Integer> updateMembers(@PathVariable("id") int id, @RequestBody Member member) {
+        int result = MembersService.updateMembers(id, member);
+        if (result == 0) {
+            return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
+        } else {
+            return new ResponseEntity<Integer>(result, HttpStatus.OK);
+        }
+    }
+
+//    /**
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "/members/updatepassword", method = RequestMethod.GET)
+//    public ResponseEntity<Integer> updatePasswordMembers() {
+//        int result = MembersService.updatePassword();
+//        if (result == 0) {
+//            return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
+//        } else {
+//            return new ResponseEntity<Integer>(result, HttpStatus.OK);
+//        }
+//    }
+
+    @RequestMapping(value = "/members/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Integer> deleteMembers(@PathVariable("id") int id) {
+        int result = MembersService.deleteMembers(id);
+        if (result == 0) {
+            return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
+        } else {
+            return new ResponseEntity<Integer>(result, HttpStatus.OK);
+        }
+    }
+
+    @RequestMapping(value = "/members", method = RequestMethod.PUT)
+    public ResponseEntity<Integer> insertMembers(@RequestBody Member member) {
+        int result = MembersService.insertMembers(member);
+        if (result == 0) {
+            return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
+        } else {
+            return new ResponseEntity<Integer>(result, HttpStatus.OK);
+        }
+    }
+
 }
