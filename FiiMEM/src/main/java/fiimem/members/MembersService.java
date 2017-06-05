@@ -37,7 +37,7 @@ public class MembersService {
                 member.setFirstname(rs.getString("FIRSTNAME"));
                 member.setMid(rs.getInt("MID"));
                 member.setPassword(rs.getString("PASSWORD"));
-                member.setPhone(rs.getInt("PHONE"));
+                member.setPhone(rs.getString("PHONE"));
                 member.setSurname(rs.getString("SURNAME"));
                 member.setUsername(rs.getString("USERNAME"));
                 result.add(member);
@@ -74,7 +74,7 @@ public class MembersService {
                 member.setFirstname(rs.getString("FIRSTNAME"));
                 member.setMid(rs.getInt("MID"));
                 member.setPassword(rs.getString("PASSWORD"));
-                member.setPhone(rs.getInt("PHONE"));
+                member.setPhone(rs.getString("PHONE"));
                 member.setSurname(rs.getString("SURNAME"));
                 member.setUsername(rs.getString("USERNAME"));
                 result = member;
@@ -94,30 +94,30 @@ public class MembersService {
         return null;
     }
 
-//    static int updatePassword() {
-//        int result;
-//        HashConvertor hash = new HashConvertor();
-//        Connection con = MainApp.getDBConnection();
-//        String query = "UPDATE members SET password = ? where mid = ?";
-//        try {
-//            PreparedStatement pstmt = con.prepareStatement(query);
-//            String selectQuery = "SELECT * FROM Members";
-//            Statement stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery(selectQuery);
-//            while (rs.next()) {
-//                int mid = rs.getInt("MID");
-//                String password = rs.getString("PASSWORD");
-//                pstmt.setString(1, hash.convert(password));
-//                pstmt.setInt(2, mid);
-//                result = pstmt.executeUpdate();
-//            }
-//            pstmt.close();
-//            return 1;
-//        } catch (Exception exc) {
-//            System.out.printf("[error][back][updatePassword] %s\n", exc.getMessage());
-//        }
-//        return 0;
-//    }
+    static int updatePassword() {
+        int result;
+        HashConvertor hash = new HashConvertor();
+        Connection con = MainApp.getDBConnection();
+        String query = "UPDATE members SET password = ? where mid = ?";
+        try {
+            PreparedStatement pstmt = con.prepareStatement(query);
+            String selectQuery = "SELECT * FROM Members";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(selectQuery);
+            while (rs.next()) {
+                int mid = rs.getInt("MID");
+                String password = rs.getString("PASSWORD");
+                pstmt.setString(1, hash.convert(password));
+                pstmt.setInt(2, mid);
+                result = pstmt.executeUpdate();
+            }
+            pstmt.close();
+            return 1;
+        } catch (Exception exc) {
+            System.out.printf("[error][back][updatePassword] %s\n", exc.getMessage());
+        }
+        return 0;
+    }
     static int updateMembers(int id, Member member) {
         int result;
         Connection con = MainApp.getDBConnection();
@@ -134,7 +134,7 @@ public class MembersService {
             pstmt.setString(4, member.getUsername());
             pstmt.setString(5, member.getEmail());
             pstmt.setString(6, member.getAddress());
-            pstmt.setInt(7, member.getPhone());
+            pstmt.setString(7, member.getPhone());
             pstmt.setString(8, hash.convert(member.getPassword()));
             pstmt.setInt(9, member.getFictiv());
             pstmt.setString(10, member.getBithdate());
@@ -172,7 +172,9 @@ public class MembersService {
         Connection con = MainApp.getDBConnection();
         HashConvertor hash = new HashConvertor();
         String query = "INSERT INTO MEMBERS (MID, SURNAME, FIRSTNAME, USERNAME, EMAIL, ADDRESS"
-                + ",PHONE, PASSWORD, FICTIV, BITHDATE, DECEASEDDATE)" + "VALUES (mid_seq.nextval,?,?,?,?,?,?,?,?,?,?)";
+                + ",PHONE, PASSWORD, FICTIV, BITHDATE, DECEASEDDATE)" + "VALUES (mid_seq.nextval,?,?,?,?,?,?,?,?,"
+                + "to_date("+ "?"
+                + ",'yyyy/mm/dd'),?)";
 
         try {
             PreparedStatement pstmt = con.prepareStatement(query);
@@ -182,9 +184,10 @@ public class MembersService {
             pstmt.setString(3, member.getUsername());
             pstmt.setString(4, member.getEmail());
             pstmt.setString(5, member.getAddress());
-            pstmt.setInt(6, member.getPhone());
+            pstmt.setString(6, member.getPhone());
             pstmt.setString(7, hash.convert(member.getPassword()));
             pstmt.setInt(8, member.getFictiv());
+            //System.out.println(member.getBithdate());
             pstmt.setString(9, member.getBithdate());
             pstmt.setString(10, member.getDeceaseddate());
             result = pstmt.executeUpdate();

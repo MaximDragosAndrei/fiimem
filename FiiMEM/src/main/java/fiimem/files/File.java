@@ -5,8 +5,6 @@
  */
 package fiimem.files;
 
-import java.io.InputStream;
-import java.sql.Blob;
 
 /**
  *

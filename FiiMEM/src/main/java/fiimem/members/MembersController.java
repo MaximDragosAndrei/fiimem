@@ -64,19 +64,19 @@ public class MembersController {
         }
     }
 
-//    /**
-//     *
-//     * @return
-//     */
-//    @RequestMapping(value = "/members/updatepassword", method = RequestMethod.GET)
-//    public ResponseEntity<Integer> updatePasswordMembers() {
-//        int result = MembersService.updatePassword();
-//        if (result == 0) {
-//            return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
-//        } else {
-//            return new ResponseEntity<Integer>(result, HttpStatus.OK);
-//        }
-//    }
+    /**
+     *
+     * @return
+     */
+    @RequestMapping(value = "/members/updatepassword", method = RequestMethod.GET)
+    public ResponseEntity<Integer> updatePasswordMembers() {
+        int result = MembersService.updatePassword();
+        if (result == 0) {
+            return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
+        } else {
+            return new ResponseEntity<Integer>(result, HttpStatus.OK);
+        }
+    }
     @RequestMapping(value = "/members/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Integer> deleteMembers(@PathVariable("id") int id) {
         int result = MembersService.deleteMembers(id);
