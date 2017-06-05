@@ -51,13 +51,13 @@
             <artifactId>ojdbc7</artifactId>
             <version>12.1.0.1</version>
         </dependency>
-<!--        <dependency>
+        <dependency>
             <groupId>ojdbc</groupId>
             <artifactId>ojdbc</artifactId>
             <version>14</version>
             <scope>runtime</scope>
             <type>pom</type>
-        </dependency>-->
+         </dependency>
     </dependencies>
 
     <build>

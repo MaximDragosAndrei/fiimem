@@ -30,38 +30,29 @@ public class MembersService {
             while (rs.next()) {
                 Member member = new Member();
                 member.setAddress(rs.getString("ADDRESS"));
-//                                System.out.println("ok");
                 member.setBithdate(rs.getString("BITHDATE"));
-//                                System.out.println("ok");
                 member.setDeceaseddate(rs.getString("DECEASEDDATE"));
-//                                System.out.println("ok");
                 member.setEmail(rs.getString("EMAIL"));
-//                                System.out.println("ok");
                 member.setFictiv(rs.getInt("FICTIV"));
-//                                System.out.println("ok");
                 member.setFirstname(rs.getString("FIRSTNAME"));
-//                                System.out.println("ok");
                 member.setMid(rs.getInt("MID"));
-//                                System.out.println("ok");
                 member.setPassword(rs.getString("PASSWORD"));
-//                                System.out.println("ok");
                 member.setPhone(rs.getInt("PHONE"));
-//                                System.out.println("ok");
                 member.setSurname(rs.getString("SURNAME"));
-//                                System.out.println("ok");
                 member.setUsername(rs.getString("USERNAME"));
-//                                System.out.println("ok");
                 result.add(member);
             }
             stmt.close();
             rs.close();
             if (result.isEmpty()) {
+                System.out.println("[success][back][getAllMembers]: No members");
                 return null;
             } else {
+                System.out.println("[success][back][getAllMembers]");
                 return result;
             }
         } catch (Exception exc) {
-            System.out.printf("[error][getAllMembers] %s\n", exc.getMessage());
+            System.out.printf("[error][back][getAllMembers] %s\n", exc.getMessage());
         }
         return null;
     }
@@ -91,12 +82,14 @@ public class MembersService {
             stmt.close();
             rs.close();
             if (result == null) {
+                System.out.println("[success][back][getMembers]: No such member");
                 return null;
             } else {
+                System.out.println("[success][back][getMembers]");
                 return result;
             }
         } catch (Exception exc) {
-            System.out.printf("[error][getMembers] %s\n", exc.getMessage());
+            System.out.printf("[error][back][getMembers] %s\n", exc.getMessage());
         }
         return null;
     }
@@ -121,11 +114,10 @@ public class MembersService {
 //            pstmt.close();
 //            return 1;
 //        } catch (Exception exc) {
-//            System.out.printf("[error][updatePassword] %s\n", exc.getMessage());
+//            System.out.printf("[error][back][updatePassword] %s\n", exc.getMessage());
 //        }
 //        return 0;
 //    }
-
     static int updateMembers(int id, Member member) {
         int result;
         Connection con = MainApp.getDBConnection();
@@ -150,9 +142,10 @@ public class MembersService {
             pstmt.setInt(12, id);
             result = pstmt.executeUpdate();
             pstmt.close();
+            System.out.println("[success][back][updateMembers]");
             return result;
         } catch (Exception exc) {
-            System.out.printf("[error][updateMembers] %s\n", exc.getMessage());
+            System.out.printf("[error][back][updateMembers] %s\n", exc.getMessage());
         }
         return 0;
     }
@@ -166,9 +159,10 @@ public class MembersService {
             pstmt.setInt(1, id);
             result = pstmt.executeUpdate();
             pstmt.close();
+            System.out.println("[success][back][deleteMembers]");
             return result;
         } catch (Exception exc) {
-            System.out.printf("[error][deleteMembers] %s\n", exc.getMessage());
+            System.out.printf("[error][back][deleteMembers] %s\n", exc.getMessage());
         }
         return 0;
     }
@@ -178,51 +172,52 @@ public class MembersService {
         Connection con = MainApp.getDBConnection();
         HashConvertor hash = new HashConvertor();
         String query = "INSERT INTO MEMBERS (MID, SURNAME, FIRSTNAME, USERNAME, EMAIL, ADDRESS"
-                + ",PHONE, PASSWORD, FICTIV, BITHDATE, DECEASEDDATE)" + "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                + ",PHONE, PASSWORD, FICTIV, BITHDATE, DECEASEDDATE)" + "VALUES (mid_seq.nextval,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setInt(1, member.getMid());
-            pstmt.setString(2, member.getSurname());
-            pstmt.setString(3, member.getFirstname());
-            pstmt.setString(4, member.getUsername());
-            pstmt.setString(5, member.getEmail());
-            pstmt.setString(6, member.getAddress());
-            pstmt.setInt(7, member.getPhone());
-            pstmt.setString(8, hash.convert(member.getPassword()));
-            pstmt.setInt(9, member.getFictiv());
-            pstmt.setString(10, member.getBithdate());
-            pstmt.setString(11, member.getDeceaseddate());
+            //pstmt.setInt(1, member.getMid());
+            pstmt.setString(1, member.getSurname());
+            pstmt.setString(2, member.getFirstname());
+            pstmt.setString(3, member.getUsername());
+            pstmt.setString(4, member.getEmail());
+            pstmt.setString(5, member.getAddress());
+            pstmt.setInt(6, member.getPhone());
+            pstmt.setString(7, hash.convert(member.getPassword()));
+            pstmt.setInt(8, member.getFictiv());
+            pstmt.setString(9, member.getBithdate());
+            pstmt.setString(10, member.getDeceaseddate());
             result = pstmt.executeUpdate();
             pstmt.close();
             return result;
         } catch (Exception exc) {
-            System.out.printf("[error][insertMembers] %s\n", exc.getMessage());
+            System.out.printf("[error][back][insertMembers] %s\n", exc.getMessage());
         }
         return 0;
     }
 
-    /*static Integer checkPassword(LoginDetails login) {
+    public static Integer checkPassword(LoginDetails login) {
         int result = 0;
         Connection con = MainApp.getDBConnection();
         HashConvertor hash = new HashConvertor();
-        String query = "SELECT PASSWORD FROM Members WHERE EMAIL = " + login.getEmail();
+        String query = "SELECT PASSWORD FROM Members WHERE EMAIL = '" + login.getEmail() + "'";
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 String saltedPassword = rs.getString("PASSWORD");
-                String salt = saltedPassword.substring(saltedPassword.length()-10);
-                if(saltedPassword.equals(hash.convert(login.getPassword()+salt)))
+                String salt = saltedPassword.substring(saltedPassword.length() - 10, saltedPassword.length());
+                if (saltedPassword.equals(hash.convert(login.getPassword(), salt))) {
                     result = 1;
+                }
             }
             stmt.close();
             rs.close();
-                return result;
+            return result;
         } catch (Exception exc) {
-            System.out.printf("[error][checkPassword] %s\n", exc.getMessage());
+            System.out.printf("[error][back][checkPassword] %s\n", exc.getMessage());
         }
         return 0;
-    }*/
+    }
 
 }

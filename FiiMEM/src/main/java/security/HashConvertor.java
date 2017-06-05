@@ -46,7 +46,7 @@ public class HashConvertor {
             throw new RuntimeException(ex);
         }
     }
-/*    public String convert(String str, String salt){
+    public String convert(String str, String salt){
         try{
             MessageDigest digest = MessageDigest.getInstance( hashType);
             SecureRandom random = new SecureRandom();
@@ -65,5 +65,5 @@ public class HashConvertor {
         }catch(Exception ex){
             throw new RuntimeException(ex);
         }
-    }*/
+    }
 }

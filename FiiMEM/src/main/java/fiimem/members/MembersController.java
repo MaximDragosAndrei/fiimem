@@ -43,16 +43,16 @@ public class MembersController {
 
         return new ResponseEntity<Member>(result, HttpStatus.OK);
     }
-    
-    /*@RequestMapping(value = "/members/checkPassword", method = RequestMethod.PUT)
-    public ResponseEntity<Integer> checkPassword(@RequestBody LoginDetails login ) {
+
+    @RequestMapping(value = "/check", method = RequestMethod.PUT)
+    public ResponseEntity<Integer> checkPassword(@RequestBody LoginDetails login) {
         Integer result = MembersService.checkPassword(login);
         if (result == 0) {
             return new ResponseEntity<Integer>(result, HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<Integer>(result, HttpStatus.OK);
-    }*/
+    }
 
     @RequestMapping(value = "/members/{id}", method = RequestMethod.POST)
     public ResponseEntity<Integer> updateMembers(@PathVariable("id") int id, @RequestBody Member member) {
@@ -77,7 +77,6 @@ public class MembersController {
 //            return new ResponseEntity<Integer>(result, HttpStatus.OK);
 //        }
 //    }
-
     @RequestMapping(value = "/members/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Integer> deleteMembers(@PathVariable("id") int id) {
         int result = MembersService.deleteMembers(id);
@@ -89,10 +88,12 @@ public class MembersController {
     }
 
     @RequestMapping(value = "/members", method = RequestMethod.PUT)
-    public ResponseEntity<Integer> insertMembers(@RequestBody Member member) {
-        int result = MembersService.insertMembers(member);
+    public ResponseEntity<Integer> insertMembers(@RequestBody Member member) throws Exception {
+        int result = 0;
+        result = MembersService.insertMembers(member);
         if (result == 0) {
-            return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
+            throw new Exception("[error][back][insertMembers]");
+            //return new ResponseEntity<Integer>(result, HttpStatus.NOT_MODIFIED);
         } else {
             return new ResponseEntity<Integer>(result, HttpStatus.OK);
         }
