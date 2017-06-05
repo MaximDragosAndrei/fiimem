@@ -170,3 +170,6 @@ create index indexmulti on Members(surname, address);
 create index indexname on Members(upper(username));
 /
 create index indexoras on Members(INITCAP(LOWER(regexp_substr(address,'[^,]+'))));
+/
+create  sequence mid_seq
+MINVALUE 10000 MAXVALUE 9999999999 INCREMENT BY 1 START WITH 10220 CACHE 200 ;
