@@ -19,9 +19,15 @@ public class Member {
     private String address;
     private int phone;
     private String password;
-    private int ficitv;
+    private int fictiv;
     private String bithdate;
     private String deceaseddate;
+
+    public Member() {
+        fictiv = 0;
+        deceaseddate = null;
+    }
+
 
     public void setMid(int mid) {
         this.mid = mid;
@@ -56,7 +62,7 @@ public class Member {
     }
 
     public void setFictiv(int fictiv) {
-        this.ficitv = ficitv;
+        this.fictiv = fictiv;
     }
 
     public void setBithdate(String bithdate) {
@@ -100,7 +106,7 @@ public class Member {
     }
 
     public int getFictiv() {
-        return ficitv;
+        return fictiv;
     }
 
     public String getBithdate() {
@@ -110,5 +116,16 @@ public class Member {
     public String getDeceaseddate() {
         return deceaseddate;
     }
-
+//    public Member(RegisterMember regMember){
+//        fictiv=0;
+//        deceaseddate = null;
+//        surname = regMember.getSurname();
+//        firstname=regMember.getFirstname();
+//        username = regMember.getUsername();
+//        email = regMember.getEmail();
+//        address = regMember.getAddress();
+//        phone = regMember.getPhone();
+//        password = regMember.getPassword();
+//        bithdate = regMember.getBithdate();
+//    }
 }

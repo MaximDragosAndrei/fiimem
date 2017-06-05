@@ -1,7 +1,7 @@
 /home/andy/NetBeansProjects/front/src/main/java/front/ServerProperties.java
-/home/andy/NetBeansProjects/front/src/main/java/Utils/AuthUtils.java
+/home/andy/NetBeansProjects/front/src/main/java/entities/LoginDetails.java
 /home/andy/NetBeansProjects/front/src/main/java/front/controllers/GlobalController.java
 /home/andy/NetBeansProjects/front/src/main/java/front/controllers/RegisterController.java
-/home/andy/NetBeansProjects/front/src/main/java/entities/AuthEntity.java
+/home/andy/NetBeansProjects/front/src/main/java/front/controllers/LoginController.java
 /home/andy/NetBeansProjects/front/src/main/java/entities/Member.java
 /home/andy/NetBeansProjects/front/src/main/java/front/MainApp.java
