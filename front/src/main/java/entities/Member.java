@@ -17,7 +17,7 @@ public class Member {
     private String username;
     private String email;
     private String address;
-    private int phone;
+    private String phone;
     private String password;
     private int fictiv;
     private String bithdate;
@@ -53,7 +53,7 @@ public class Member {
         this.address = address;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -97,7 +97,7 @@ public class Member {
         return address;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 

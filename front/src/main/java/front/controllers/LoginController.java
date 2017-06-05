@@ -7,11 +7,7 @@ package front.controllers;
 
 import entities.LoginDetails;
 import front.ServerProperties;
-import java.io.File;
-import java.io.IOException;
 import java.util.Map;
-import java.util.Scanner;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;

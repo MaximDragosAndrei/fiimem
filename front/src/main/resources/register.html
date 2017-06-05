@@ -104,7 +104,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
-                            <input type="number" required class="form-control" name="phone" id="phone" placeholder="example: +xxx-xxx-xxxx"/>
+                            <input type="text" required class="form-control" name="phone" id="phone" pattern="+^\d{3}-\d{3}-\d{4}$" placeholder="example: +xxx-xxx-xxxx"/>
                         </div>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                     <div class="cols-sm-10">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-                            <input type="text" required class="form-control" name="birthdate" id="date"  />
+                            <input type="date" required class="form-control" name="birthdate" id="date" />
                         </div>
                     </div>
                 </div>
