@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            <a class="navbar-brand navbar-link" href="home.html">
+                <img id="logo" src="logo1.png">
+            </a>
+        </div>
+        <div id="navcol-1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active" role="presentation">
+                    <a href="my photos.html">
+                        <i class="fa fa-file-image-o"> <strong>My photos</strong> </i> </a>
+                </li>
+                <li role="presentation">
+                    <a href="my videos.html">
+                        <i class="fa fa-file-video-o"> <strong>My videos</strong> </i></a>
+                </li>
+                <li  role="presentation">
+                    <a href="my documents.html">
+                        <i class="fa fa-file-text-o"> <strong>My documents</strong> </i></a>
+                </li>
+                <li role="presentation">
+                    <a href="about%20us.html">
+                        <i class="fa  fa-sign-out"> <strong>Logout</strong> </i> </a>
+                </li>
+            </ul>
+            <div class="col-sm-3 col-md-3">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="q">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>
+        </div>
+    </div>
+</nav>
+        <div style="padding-top:50px;"> </div>
+       <div class="container">
+    <div class="span3 well">
+        <center>
+        <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" class="img-circle"></a>
+        <h3>Joe Nemo</h3>
+        <em>click on the photo to see more about me</em>
+        </center>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">Info</h4>
+                    </div>
+                <div class="modal-body">
+                    <center>
+                    <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R" name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+                    <h3 class="media-heading">Joe Nemo </h3>
+                    </center>
+                    <hr>
+                    <center>
+                    <p class="text-center"><i class="fa fa-home" aria-hidden="true"></i><strong> City: </strong><br>
+					<i class="fa fa-birthday-cake" aria-hidden="true"></i><strong> Birthdate: </strong><br>
+					<i class="fa fa-id-card-o" aria-hidden="true"></i><strong> Age: </strong><br>
+					<i class="fa fa-mobile" aria-hidden="true"></i><strong> Phone: </strong><br>
+					<i class="fa fa-user-circle" aria-hidden="true"></i><strong> Where you can find me: </strong><br>
+					<i class="fa fa-sticky-note" aria-hidden="true"></i><strong> More about me: </strong>
+                        </p>
+                    <br>
+                    </center>
+                </div>
+                <div class="modal-footer">
+                    <center>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">See my friends</button>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

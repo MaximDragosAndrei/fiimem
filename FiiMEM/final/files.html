@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My documents</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="photostyle1.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+ <div class="col-sm-3 col-md-3">
+    <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+     <div class="col-sm-3 col-md-9">
+     <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="q">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+     <br>
+     <form action="upload.php" method="post" enctype="multipart/form-data">
+    <p>Select image to upload:<br></p>
+    <div>
+    <input type="file" name="fileToUpload" id="fileToUpload"><br>
+    <input type="submit" value="Upload Image" name="submit">
+    </div>
+</form>
+  </div>
+</div>
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "100%";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+               <span style="font-size:10px;cursor:pointer" onclick="openNav()"><img id="logo" src="logo1.png"></span>
+        </div>
+        <div id="navcol-1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active" role="presentation">
+                    <a href="my profile.html">
+                        <i class="fa fa-home"> <strong>My profile</strong> </i> </a>
+                </li>
+                <li role="presentation">
+                    <a href="my videos.html">
+                        <i class="fa fa-file-video-o"> <strong>My videos</strong> </i></a>
+                </li>
+                <li  role="presentation">
+                    <a href="my photos.html">
+                        <i class="fa fa-file-image-o"> <strong>My photos</strong> </i> </a>
+                </li>
+                <li role="presentation">
+                    <a href="about%20us.html">
+                        <i class="fa  fa-sign-out"> <strong>Logout</strong> </i> </a>
+                </li>
+            </ul>
+        </div>
+        </div>
+</nav>
+
+    <div style="padding-top:50px;"> </div>
+<div class="row">
+  <div class="column">
+  <object width="400" height="500" type="application/pdf" data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" id="pdf_content1" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </object>
+  <div class="column">
+    <object width="400" height="500" type="application/pdf" data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" id="pdf_content2" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </object>
+  <div class="column">
+    <object width="400" height="500" type="application/pdf" data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" id="pdf_content3" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </object>
+  <div class="column">
+   <object width="400" height="500" type="application/pdf" data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" id="pdf_content" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor"> 
+  </object>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <object data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" style="width:100%"></object>
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <object data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" style="width:100%"></object>
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <object data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" style="width:100%"></object>
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <object data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" style="width:100%">
+      </object>
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+
+    <div class="column">
+      <object class="demo cursor" data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" style="width:100%" onclick="currentSlide(1)" alt="Poza1">
+      </object>
+    </div>
+    <div class="column">
+      <object class="demo cursor" data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" style="width:100%" onclick="currentSlide(2)" alt="Poza2">
+      </object>
+    </div>
+    <div class="column">
+      <object class="demo cursor" data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" style="width:100%" onclick="currentSlide(3)" alt="Poza3">
+      </object>
+    </div>
+    <div class="column">
+      <object class="demo cursor" data="Problems_of_the_8th_Open_Mathematical_Olympiad_of_the_Belarusian-Russian_University_eng (1).pdf" style="width:100%" onclick="currentSlide(4)" alt="Poza4">
+      </object>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById('myModal').style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById('myModal').style.display = "none";
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+  </div>
+  </div>
+  </div>
+</div>
+</body>
+</html>
