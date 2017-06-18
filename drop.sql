@@ -29,3 +29,4 @@ DROP TABLE Tags CASCADE CONSTRAINTS;
 DROP TABLE Tags_Files CASCADE CONSTRAINTS;
 --secvente
 drop sequence mid_seq;
+drop sequence fid_seq;
