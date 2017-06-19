@@ -30,7 +30,6 @@ public class PozeService {
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
-                file.setByteArray(rs.getBytes("FILES"));
                 file.setMembersmid(rs.getInt("MEMBERSMID"));
                 file.setName(rs.getString("NAME"));
                 result.add(file);
@@ -60,7 +59,6 @@ public class PozeService {
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
-                file.setByteArray(rs.getBytes("FILES"));
                 file.setMembersmid(rs.getInt("MEMBERSMID"));
                 file.setName(rs.getString("NAME"));
                 result = file;
@@ -91,7 +89,6 @@ public class PozeService {
             pstmt.setString(3, file.getAddress());
             pstmt.setString(4, file.getName());
             pstmt.setString(5, file.getFormat());
-            pstmt.setBlob(6, file.getByteArray());
             pstmt.setInt(7, id);
             result = pstmt.executeUpdate();
             pstmt.close();
