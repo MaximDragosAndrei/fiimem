@@ -31,9 +31,6 @@ public class FilesService {
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
-                //file.setByteArray(rs.getBytes("FILES"));
-                //file.setIs(rs.getBinaryStream("FILES"));
-                file.setByteArray(rs.getBytes("FILES"));
                 file.setMembersmid(rs.getInt("MEMBERSMID"));
                 file.setName(rs.getString("NAME"));
                 result.add(file);
