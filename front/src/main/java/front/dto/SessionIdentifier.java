@@ -1,8 +1,5 @@
 package front.dto;
 
-/**
- * Created by rusub on 5/8/2017.
- */
 public class SessionIdentifier {
 
     private boolean success;

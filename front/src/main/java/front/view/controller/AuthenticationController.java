@@ -2,12 +2,9 @@ package front.view.controller;
 
 import front.ServerProperties;
 import front.TolerantRestTemplate;
-import front.dto.Login;
 import front.dto.LoginDetails;
-import front.dto.RoleEntity;
 import front.dto.SessionIdentifier;
 import front.view.Model.Member;
-import front.view.Model.SignUpResponse;
 import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpResponse;
@@ -23,7 +20,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Base64;
 import java.util.Map;
 
 @Controller
@@ -40,63 +36,30 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(HttpServletRequest req, HttpServletResponse res, Model model) throws URISyntaxException, IOException {
+    public ModelAndView login(@RequestParam Map<String, String> body) throws URISyntaxException, IOException {
 
-        Map<String, String[]> params = req.getParameterMap();
-        if (!validator.isValid(params)) {
-            model.addAttribute("inv", "Invalid email");
-            return new ModelAndView("/login");
-        }
-        RestTemplate rt = new RestTemplate();
-        Map<String, String> singleValueParams = Mapper.changeToSingle(params);
+        RestTemplate rt= new TolerantRestTemplate();
 
-        rt.setErrorHandler(new ResponseErrorHandler() {
-            @Override
-            public boolean hasError(ClientHttpResponse clientHttpResponse) throws IOException {
-                return false;
-            }
+        LoginDetails login = new LoginDetails();
+        login.setEmail(body.get("email"));
+        login.setPassword(body.get("password"));
 
-            @Override
-            public void handleError(ClientHttpResponse clientHttpResponse) throws IOException {
-            }
-        });
-        Login login = new Login();
-        login.setUsername(singleValueParams.get("email"));
-        login.setPassword(singleValueParams.get("password"));
-
-        ResponseEntity<SessionIdentifier> identifier = rt.postForEntity(
+        ResponseEntity<Integer> status = rt.postForEntity(
                 ServerProperties.backUrl + "/check", login,
-                SessionIdentifier.class);
+                Integer.class);
 
-        SessionIdentifier si = identifier.getBody();
+//        SessionIdentifier si = identifier.getBody();
 
 
-        System.out.println(si.isSuccess());
-        System.out.println(si.getFailureReason());
-        if (!si.isSuccess()) {
-            model.addAttribute("failure", si.getFailureReason());
+//        System.out.println(si.isSuccess());
+//        System.out.println(si.getFailureReason());
+        if (status.equals(0))
             return new ModelAndView("/login");
-        }
-
-        Cookie cookie1 = new Cookie("user-name", singleValueParams.get("email"));
-//        Cookie cookie2 = new Cookie("user-token", si.getToken());
-        cookie1.setSecure(true);
-//        cookie2.setSecure(true);
-
-//        ResponseEntity<RoleEntity> roleResponse = rt.getForEntity(ServerProperties.backUrl + "/get_role/{emailB64}",
-//                RoleEntity.class, new String(Base64.getEncoder().encode(singleValueParams.get("email").getBytes())));
-
-        res.addCookie(cookie1);
-//        res.addCookie(cookie2);
-//        if (roleResponse.getBody().getRole().equals("user")) {
-            return new ModelAndView("redirect:/myprofile");
-//        } else {
-//            return new ModelAndView("redirect:/dashboard_admin");
-//        }
+        return new ModelAndView("redirect:/myprofile");
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public ModelAndView getAuthenticationForm(HttpServletResponse res) {
+    public ModelAndView getRegisterPage(HttpServletResponse res) {
         return new ModelAndView("/register");
     }
 
@@ -123,16 +86,14 @@ public class AuthenticationController {
         }
         return new ModelAndView("/register");
     }
+
+//    @RequestMapping(value = "/register", method = RequestMethod.POST)
+//    @ResponseBody
 //    public ModelAndView createAccount(String error, Model model, HttpServletRequest req, HttpServletResponse rep) {
 //
 //        Map<String, String[]> params = req.getParameterMap();
 //
 //        Map<String, String> singleValueParams;
-//        if (!validator.isValid(params)) {
-//            model.addAttribute("inv", "Invalid email");
-//            return new ModelAndView("/register");
-//        }
-//
 //        try {
 //            singleValueParams = Mapper.changeToSingle(params);
 //        } catch (IllegalArgumentException ex) {
@@ -146,6 +107,7 @@ public class AuthenticationController {
 //        }
 //        RestTemplate rt = new RestTemplate();
 //        Member member = new Member();
+//        System.out.println("date preluate");
 //        try {
 //            member.setAddress(singleValueParams.get("address"));
 //            member.setBithdate(singleValueParams.get("birthdate"));
@@ -155,7 +117,10 @@ public class AuthenticationController {
 //            member.setPhone(singleValueParams.get("phone"));
 //            member.setSurname(singleValueParams.get("surname"));
 //            member.setUsername(singleValueParams.get("username"));
+//            System.out.println("date preluate");
 //            rt.put(ServerProperties.backUrl + "/register", member);
+//            System.out.println("date prelcrate");
+//            model.addAttribute("register","Ok!");
 //        }catch (Exception ex){
 //            System.out.printf("[error][front][register] %s\n", ex.getMessage());
 //            return null;

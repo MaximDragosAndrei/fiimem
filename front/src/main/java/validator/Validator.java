@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-/**
- * Created by rusub on 5/6/2017.
- */
 public class Validator implements IValidator {
 
     private Map<String, Pattern> fieldRegex;

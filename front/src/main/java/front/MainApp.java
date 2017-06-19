@@ -1,45 +1,35 @@
 package front;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.context.annotation.Bean;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
+@EnableSwagger2
 public class MainApp {
-    //private static final String DB_FILE = "FIIMEM.db";
+    public static void main(String[] args){
 
-    /*private static final String USER = "FIIMEM";
-    private static final String PASSWORD = "FIIMEM";
-    private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
-    
-    private static Connection fiimemDBConnection;
-
-    public static void createNewDatabase() {
-        
-        try (Connection conn = DriverManager.getConnection(URL,USER,PASSWORD)) {
-            if (conn != null) {
-                System.out.printf("[debug][createNewDatabase] Database \"%s\" created!\n", "fiimem");
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        SpringApplication.run(MainApp.class, args);
     }
 
-    public static Connection getDBConnection() {
-        if (fiimemDBConnection == null) {
-            try {
-                fiimemDBConnection = DriverManager.getConnection(URL,USER,PASSWORD);
-            } catch (SQLException e) {
-                System.out.printf("[error][getDBConnection] %s\n", e.getMessage());
-            }
-        }
-        return fiimemDBConnection;
-    }*/
+    @Bean
+    EmbeddedServletContainerCustomizer containerCustomizer() throws Exception {
 
-    public static void main(String[] args) {
-        //System.out.println("Stat the SpringBoot Server!");
-        SpringApplication.run(MainApp.class, args);
+        return (ConfigurableEmbeddedServletContainer container) -> {
+
+            if (container instanceof TomcatEmbeddedServletContainerFactory) {
+
+                TomcatEmbeddedServletContainerFactory tomcat = (TomcatEmbeddedServletContainerFactory) container;
+                tomcat.addConnectorCustomizers(
+                        (connector) -> {
+                            connector.setMaxPostSize(10000000);//10MB
+                        }
+                );
+            }
+        };
     }
 }
