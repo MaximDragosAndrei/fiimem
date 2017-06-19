@@ -17,6 +17,11 @@ public class Poza {
         private String format;
         //private String files;
         //private InputStream is;
+        private byte[] byteArray;
+        
+        public void setByteArray(byte[] byteArray){
+            this.byteArray = byteArray;
+        }
         /*public void setIs(InputStream is){
             this.is=is;
         }*/
@@ -59,5 +64,7 @@ public class Poza {
         public InputStream getIs(){
             return is;
         }*/
-
+        public byte[] getByteArray(){
+            return byteArray;
+        }
 }

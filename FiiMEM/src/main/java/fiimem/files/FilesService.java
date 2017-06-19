@@ -31,6 +31,8 @@ public class FilesService {
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
+                //file.setByteArray(rs.getBytes("FILES"));
+                //file.setIs(rs.getBinaryStream("FILES"));
                 file.setMembersmid(rs.getInt("MEMBERSMID"));
                 file.setName(rs.getString("NAME"));
                 result.add(file);
@@ -60,6 +62,8 @@ public class FilesService {
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
+                //file.setByteArray(rs.getBytes("FILES"));
+                //file.setIs(rs.getBinaryStream("FILES"));
                 file.setMembersmid(rs.getInt("MEMBERSMID"));
                 file.setName(rs.getString("NAME"));
                 result = file;
@@ -81,7 +85,7 @@ public class FilesService {
         int result;
         Connection con = MainApp.getDBConnection();
         String query = "UPDATE FILES SET FID = ?, MEMBERSMID = ?, ADDRESS = ?, NAME = ?,"
-                + "FORMAT = ?, FILES = ?  WHERE FID = ?";
+                + "FORMAT = ?,  WHERE FID = ?";
 
         try {
             PreparedStatement pstmt = con.prepareStatement(query);
@@ -90,7 +94,9 @@ public class FilesService {
             pstmt.setString(3, file.getAddress());
             pstmt.setString(4, file.getName());
             pstmt.setString(5, file.getFormat());
-            pstmt.setInt(7, id);
+            //pstmt.setBlob(6, file.getByteArray());
+            //pstmt.setBinaryStream(6, file.getIs());
+            pstmt.setInt(6, id);
             result = pstmt.executeUpdate();
             pstmt.close();
             return result;
@@ -119,8 +125,8 @@ public class FilesService {
     static int insertFiles(File file) {
         int result;
         Connection con = MainApp.getDBConnection();
-        String query = "INSERT INTO FILES (FID, MEMBERSMID, ADDRESS, NAME, FORMAT, FILES)"
-                + "VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO FILES (FID, MEMBERSMID, ADDRESS, NAME, FORMAT)"
+                + "VALUES (?,?,?,?,?)";
 
         try {
             PreparedStatement pstmt = con.prepareStatement(query);
@@ -129,6 +135,8 @@ public class FilesService {
             pstmt.setString(3, file.getAddress());
             pstmt.setString(4, file.getName());
             pstmt.setString(5, file.getFormat());
+            //pstmt.setBlob(6, file.getIs());
+            //pstmt.setBlob(6, file.getBlob());
             result = pstmt.executeUpdate();
             pstmt.close();
             return result;

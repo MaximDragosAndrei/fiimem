@@ -44,13 +44,13 @@ public class MembersController {
         return new ResponseEntity<Member>(result, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/check", method = RequestMethod.PUT)
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
     public ResponseEntity<Integer> checkPassword(@RequestBody LoginDetails login) {
         Integer result = MembersService.checkPassword(login);
         if (result == 0) {
             return new ResponseEntity<Integer>(result, HttpStatus.NOT_FOUND);
         }
-
+        System.out.println("Succes!");
         return new ResponseEntity<Integer>(result, HttpStatus.OK);
     }
 

@@ -18,7 +18,7 @@ public class File {
         private String format;
         //private String files;
         //private InputStream is;
-       
+        
         /*public void setIs(InputStream is){
             this.is=is;
         }*/
@@ -61,7 +61,5 @@ public class File {
         public InputStream getIs(){
             return is;
         }*/
-        public byte[] getByteArray(){
-            return byteArray;
-        }
+        
 }

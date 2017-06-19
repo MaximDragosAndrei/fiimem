@@ -5,6 +5,7 @@
  */
 package fiimem.poze;
 
+import fiimem.files.File;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,23 +22,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PozeController {
     @RequestMapping(value = "/poze", method = RequestMethod.GET)
-	public ResponseEntity<List<Poza>> getAllPoze() {
-		List<Poza> result = PozeService.getAllPoze();
+	public ResponseEntity<List<File>> getAllPoze() {
+		List<File> result = PozeService.getAllPoze();
 		
 		if(result == null)
-			return new ResponseEntity<List<Poza>>(result, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<List<File>>(result, HttpStatus.NO_CONTENT);
 
-		return new ResponseEntity<List<Poza>>(result, HttpStatus.OK);
+		return new ResponseEntity<List<File>>(result, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/poze/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Poza> getPoze(@PathVariable int id) {
-		Poza result = PozeService.getPoze(id);
+	public ResponseEntity<File> getPoze(@PathVariable int id) {
+		File result = PozeService.getPoze(id);
 
 		if(result == null)
-			return new ResponseEntity<Poza>(result, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<File>(result, HttpStatus.NOT_FOUND);
 
-		return new ResponseEntity<Poza>(result, HttpStatus.OK);
+		return new ResponseEntity<File>(result, HttpStatus.OK);
 	}
 
 	/*@RequestMapping(value = "/files/{id}", method = RequestMethod.POST)

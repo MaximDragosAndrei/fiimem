@@ -6,6 +6,7 @@
 package fiimem.poze;
 
 import fiimem.MainApp;
+import fiimem.files.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,15 +19,15 @@ import java.util.List;
  * @author andy
  */
 public class PozeService {
-    static List<Poza> getAllPoze() {
-        ArrayList<Poza> result = new ArrayList<Poza>();
+    static List<File> getAllPoze() {
+        ArrayList<File> result = new ArrayList<File>();
         Connection con = MainApp.getDBConnection();
         String query = "SELECT * FROM Files";
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                Poza file = new Poza();
+                File file = new File();
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
@@ -47,15 +48,15 @@ public class PozeService {
         return null;
     }
 
-    static Poza getPoze(int id) {
-        Poza result = null;
+    static File getPoze(int id) {
+        File result = null;
         Connection con = MainApp.getDBConnection();
         String query = "SELECT * FROM Files WHERE FID = " + id;
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                Poza file = new Poza();
+                File file = new File();
                 file.setAddress(rs.getString("ADDRESS"));
                 file.setFid(rs.getInt("FID"));
                 file.setFormat(rs.getString("FORMAT"));
@@ -89,6 +90,7 @@ public class PozeService {
             pstmt.setString(3, file.getAddress());
             pstmt.setString(4, file.getName());
             pstmt.setString(5, file.getFormat());
+            pstmt.setBlob(6, file.getByteArray());
             pstmt.setInt(7, id);
             result = pstmt.executeUpdate();
             pstmt.close();
